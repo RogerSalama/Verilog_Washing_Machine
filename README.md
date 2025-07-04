@@ -1,4 +1,4 @@
-# 🌀 Washing Machine Controller – Phase 1 (Electronic Design Automation)
+# 🌀 Washing Machine Controller
 
 This repository contains the **Verilog** implementation and verification of a **Washing Machine Controller** finite state machine (FSM).
 
