@@ -1,0 +1,1195 @@
+QuestaSim-64 vcover 2021.1 Coverage Utility 2021.01 Jan 19 2021
+Start time: 23:16:20 on Nov 22,2024
+vcover report Testbench_code.ucdb -details -annotate -all 
+Coverage Report by instance with details
+
+=================================================================================
+=== Instance: /WashingMachine_tb/dut
+=== Design Unit: work.WashingMachine
+=================================================================================
+
+Assertion Coverage:
+    Assertions                      21        21         0   100.00%
+--------------------------------------------------------------------
+Name                 File(Line)                   Failure      Pass 
+                                                  Count        Count
+--------------------------------------------------------------------
+/WashingMachine_tb/dut/assert__CheckForError_Handle_Water_Error
+                     Desgin_code.v(362)                 0          1
+/WashingMachine_tb/dut/assert__CheckForError_Handle_Door_Error
+                     Desgin_code.v(358)                 0          1
+/WashingMachine_tb/dut/assert__Completion_CycleComplete
+                     Desgin_code.v(353)                 0          1
+/WashingMachine_tb/dut/assert__Drain_to_Dry
+                     Desgin_code.v(348)                 0          1
+/WashingMachine_tb/dut/assert__Wash_to_Drain
+                     Desgin_code.v(343)                 0          1
+/WashingMachine_tb/dut/assert__Idle_Timer_Reset
+                     Desgin_code.v(337)                 0          1
+/WashingMachine_tb/dut/assert__Power_Off_Reset
+                     Desgin_code.v(332)                 0          1
+/WashingMachine_tb/dut/assert__Ready_Stay_Without_Run
+                     Desgin_code.v(327)                 0          1
+/WashingMachine_tb/dut/assert__Ready_to_CheckForError
+                     Desgin_code.v(324)                 0          1
+/WashingMachine_tb/dut/assert__Config_Valid_Timer
+                     Desgin_code.v(321)                 0          1
+/WashingMachine_tb/dut/assert__Configurations_to_Configurations
+                     Desgin_code.v(318)                 0          1
+/WashingMachine_tb/dut/assert__Synthetics_time
+                     Desgin_code.v(315)                 0          1
+/WashingMachine_tb/dut/assert__Options_to_Ready
+                     Desgin_code.v(312)                 0          1
+/WashingMachine_tb/dut/assert__Idle_to_Idle
+                     Desgin_code.v(309)                 0          1
+/WashingMachine_tb/dut/assert__Options_to_Configurations
+                     Desgin_code.v(306)                 0          1
+/WashingMachine_tb/dut/assert__Idle_to_options
+                     Desgin_code.v(303)                 0          1
+/WashingMachine_tb/dut/assert__Sequential_State_Progression
+                     Desgin_code.v(300)                 0          1
+/WashingMachine_tb/dut/assert__Washing_Without_Water_Error
+                     Desgin_code.v(296)                 0          1
+/WashingMachine_tb/dut/assert__Manual_Timer_Validation
+                     Desgin_code.v(291)                 0          1
+/WashingMachine_tb/dut/assert__Configurations_Timeout_Handling
+                     Desgin_code.v(287)                 0          1
+/WashingMachine_tb/dut/assert__POWER_NOT_IDLE
+                     Desgin_code.v(284)                 0          1
+Branch Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                        49        45         4    91.83%
+
+================================Branch Details================================
+
+Branch Coverage for instance /WashingMachine_tb/dut
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File Desgin_code.v
+------------------------------------IF Branch------------------------------------
+    60                                        44     Count coming in to IF
+    60              1                         22             if (powerButton==0) internalPower=0;
+    61              1                         22             else internalPower <= ~ internalPower; //manual turn on or off 
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    68                                      4462     Count coming in to IF
+    68              1                       4397             if (internalPower)
+    274             1                         65             else
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------CASE Branch------------------------------------
+    70                                      4397     Count coming in to CASE
+    71              1                         22                     Idle: 
+    89              1                         22                     Options: 
+    112             1                         52                     Configurations:
+    146             1                         23                     Ready:
+    156             1                       3036                     CheckForError: 
+    176             1                        176                     Bamla_Mayya: 
+    200             1                        388                     Wash: 
+    213             1                        176                     Drain: 
+    230             1                        248                     Rinse: 
+    244             1                        247                     Dry: 
+    255             1                          7                     Completion: 
+    263             1                    ***0***                     default: ns = Idle;
+Branch totals: 11 hits of 12 branches = 91.66%
+
+------------------------------------IF Branch------------------------------------
+    91                                        22     Count coming in to IF
+    91              1                         10                         if (!configu) 
+    104             1                         12                         else 
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------CASE Branch------------------------------------
+    93                                        10     Count coming in to CASE
+    94              1                          4                                 QuickWash: begin timer = 120;    $display("QuickWash mode on!"); end
+    95              1                          1                                 Sports:    begin timer = 190;    $display("Sports mode on!"); end
+    96              1                          3                                 GentleCare:begin timer = 140;    $display("Gentlecare mode on!"); end
+    97              1                          1                                 Denim:     begin timer = 160;    $display("Denim mode on!"); end
+    98              1                    ***0***                                 Wool:      begin timer = 150;    $display("Wool mode on!"); end
+    99              1                    ***0***                                 Synthetics:begin timer = 230;    $display("Synthetics mode on!"); end
+    100             1                          1                                 default:   begin timer = 120;    $display("QuickWash mode on!"); end// set to quickwash timer as a default
+Branch totals: 5 hits of 7 branches = 71.42%
+
+------------------------------------IF Branch------------------------------------
+    114                                       52     Count coming in to IF
+    114             1                          2                         if (config_timer == 0) 
+    122             1                         11                         else if (manualTimer > 0 && manualTimer != lastManualTimer) 
+    138             1                         39                         else 
+Branch totals: 3 hits of 3 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    124                                       11     Count coming in to IF
+    124             1                          1                             if (manualTimer < 120) 
+    131             1                         10                             else 
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    148                                       23     Count coming in to IF
+    148             1                         17                         if (run)
+    153             1                          6                         else
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    158                                     3036     Count coming in to IF
+    158             1                       2032                         if (door_error)
+    165             1                        996                         else if (water_error)
+    172             1                          8                         else 
+Branch totals: 3 hits of 3 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    178                                      176     Count coming in to IF
+    178             1                        176                         if (!water_error)
+    194             1                    ***0***                         else
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    180                                      176     Count coming in to IF
+    180             1                          8                             if (timer <=70)
+    184             1                          8                             else if ((timer <= fillTimer) && timer > 90) 
+    188             1                        160                             else 
+Branch totals: 3 hits of 3 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    202                                      388     Count coming in to IF
+    202             1                          8                         if (timer <= 90) 
+    206             1                        380                         else                     
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    215                                      176     Count coming in to IF
+    215             1                          8                         if (timer <= 30) 
+    219             1                          8                         else if (timer <=80 && timer > 70) 
+    223             1                        160                         else
+Branch totals: 3 hits of 3 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    232                                      248     Count coming in to IF
+    232             1                          8                         if (timer <= 40) 
+    236             1                        240                         else                     
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    246                                      247     Count coming in to IF
+    246             1                          7                         if (timer <= 0)
+    248             1                        240                         else 
+Branch totals: 2 hits of 2 branches = 100.00%
+
+
+Condition Coverage:
+    Enabled Coverage              Bins   Covered    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Conditions                      13        13         0   100.00%
+
+================================Condition Details================================
+
+Condition Coverage for instance /WashingMachine_tb/dut --
+
+  File Desgin_code.v
+----------------Focused Condition View-------------------
+Line       114 Item    1  (config_timer == 0)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+           Input Term   Covered  Reason for no coverage   Hint
+          -----------  --------  -----------------------  --------------
+  (config_timer == 0)         Y
+
+     Rows:       Hits  FEC Target             Non-masking condition(s)      
+ ---------  ---------  --------------------   -------------------------     
+  Row   1:          1  (config_timer == 0)_0  -                             
+  Row   2:          1  (config_timer == 0)_1  -                             
+
+----------------Focused Condition View-------------------
+Line       122 Item    1  ((manualTimer > 0) && (manualTimer != lastManualTimer))
+Condition totals: 2 of 2 input terms covered = 100.00%
+
+                        Input Term   Covered  Reason for no coverage   Hint
+                       -----------  --------  -----------------------  --------------
+                 (manualTimer > 0)         Y
+  (manualTimer != lastManualTimer)         Y
+
+     Rows:       Hits  FEC Target                          Non-masking condition(s)      
+ ---------  ---------  --------------------                -------------------------     
+  Row   1:          1  (manualTimer > 0)_0                 -                             
+  Row   2:          1  (manualTimer > 0)_1                 (manualTimer != lastManualTimer)
+  Row   3:          1  (manualTimer != lastManualTimer)_0  (manualTimer > 0)             
+  Row   4:          1  (manualTimer != lastManualTimer)_1  (manualTimer > 0)             
+
+----------------Focused Condition View-------------------
+Line       124 Item    1  (manualTimer < 120)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+           Input Term   Covered  Reason for no coverage   Hint
+          -----------  --------  -----------------------  --------------
+  (manualTimer < 120)         Y
+
+     Rows:       Hits  FEC Target             Non-masking condition(s)      
+ ---------  ---------  --------------------   -------------------------     
+  Row   1:          1  (manualTimer < 120)_0  -                             
+  Row   2:          1  (manualTimer < 120)_1  -                             
+
+----------------Focused Condition View-------------------
+Line       180 Item    1  (timer <= 70)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+     Input Term   Covered  Reason for no coverage   Hint
+    -----------  --------  -----------------------  --------------
+  (timer <= 70)         Y
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  (timer <= 70)_0       -                             
+  Row   2:          1  (timer <= 70)_1       -                             
+
+----------------Focused Condition View-------------------
+Line       184 Item    1  ((timer <= fillTimer) && (timer > 90))
+Condition totals: 2 of 2 input terms covered = 100.00%
+
+            Input Term   Covered  Reason for no coverage   Hint
+           -----------  --------  -----------------------  --------------
+  (timer <= fillTimer)         Y
+          (timer > 90)         Y
+
+     Rows:       Hits  FEC Target              Non-masking condition(s)      
+ ---------  ---------  --------------------    -------------------------     
+  Row   1:          1  (timer <= fillTimer)_0  -                             
+  Row   2:          1  (timer <= fillTimer)_1  (timer > 90)                  
+  Row   3:          1  (timer > 90)_0          (timer <= fillTimer)          
+  Row   4:          1  (timer > 90)_1          (timer <= fillTimer)          
+
+----------------Focused Condition View-------------------
+Line       202 Item    1  (timer <= 90)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+     Input Term   Covered  Reason for no coverage   Hint
+    -----------  --------  -----------------------  --------------
+  (timer <= 90)         Y
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  (timer <= 90)_0       -                             
+  Row   2:          1  (timer <= 90)_1       -                             
+
+----------------Focused Condition View-------------------
+Line       215 Item    1  (timer <= 30)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+     Input Term   Covered  Reason for no coverage   Hint
+    -----------  --------  -----------------------  --------------
+  (timer <= 30)         Y
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  (timer <= 30)_0       -                             
+  Row   2:          1  (timer <= 30)_1       -                             
+
+----------------Focused Condition View-------------------
+Line       219 Item    1  ((timer <= 80) && (timer > 70))
+Condition totals: 2 of 2 input terms covered = 100.00%
+
+     Input Term   Covered  Reason for no coverage   Hint
+    -----------  --------  -----------------------  --------------
+  (timer <= 80)         Y
+   (timer > 70)         Y
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  (timer <= 80)_0       -                             
+  Row   2:          1  (timer <= 80)_1       (timer > 70)                  
+  Row   3:          1  (timer > 70)_0        (timer <= 80)                 
+  Row   4:          1  (timer > 70)_1        (timer <= 80)                 
+
+----------------Focused Condition View-------------------
+Line       232 Item    1  (timer <= 40)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+     Input Term   Covered  Reason for no coverage   Hint
+    -----------  --------  -----------------------  --------------
+  (timer <= 40)         Y
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  (timer <= 40)_0       -                             
+  Row   2:          1  (timer <= 40)_1       -                             
+
+----------------Focused Condition View-------------------
+Line       246 Item    1  (timer <= 0)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+    Input Term   Covered  Reason for no coverage   Hint
+   -----------  --------  -----------------------  --------------
+  (timer <= 0)         Y
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  (timer <= 0)_0        -                             
+  Row   2:          1  (timer <= 0)_1        -                             
+
+
+FSM Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    FSM States                      11        11         0   100.00%
+    FSM Transitions                 24        18         6    75.00%
+
+================================FSM Details================================
+
+FSM Coverage for instance /WashingMachine_tb/dut --
+
+FSM_ID: cs
+    Current State Object : cs
+    ----------------------
+    State Value MapInfo :
+    ---------------------
+Line          State Name               Value
+----          ----------               -----
+  71                Idle                   0
+  89             Options                   1
+ 112      Configurations                   2
+ 146               Ready                   3
+ 156       CheckForError                  15
+ 176         Bamla_Mayya                   9
+ 200                Wash                   4
+ 230               Rinse                   5
+ 213               Drain                   6
+ 244                 Dry                   7
+ 255          Completion                   8
+    Covered States :
+    ----------------
+                   State           Hit_count
+                   -----           ---------
+                    Idle                  86          
+                 Options                  22          
+          Configurations                  52          
+                   Ready                  24          
+           CheckForError                3036          
+             Bamla_Mayya                 176          
+                    Wash                 388          
+                   Rinse                 248          
+                   Drain                 176          
+                     Dry                 247          
+              Completion                   7          
+    Covered Transitions :
+    ---------------------
+Line            Trans_ID           Hit_count          Transition          
+----            --------           ---------          ----------          
+  73                   0                  22          Idle -> Options               
+ 106                   1                  12          Options -> Configurations          
+ 102                   2                  10          Options -> Ready              
+ 135                   4                  10          Configurations -> Ready          
+ 117                   5                   2          Configurations -> Idle          
+ 151                   6                  17          Ready -> CheckForError          
+ 276                   7                   3          Ready -> Idle                 
+ 173                   8                   8          CheckForError -> Bamla_Mayya          
+ 276                   9                   9          CheckForError -> Idle          
+ 186                  11                   8          Bamla_Mayya -> Wash           
+ 182                  12                   8          Bamla_Mayya -> Rinse          
+ 204                  14                   8          Wash -> Drain                 
+ 234                  16                   8          Rinse -> Drain                
+ 221                  18                   8          Drain -> Bamla_Mayya          
+ 217                  19                   8          Drain -> Dry                  
+ 247                  21                   7          Dry -> Completion             
+ 276                  22                   1          Dry -> Idle                   
+ 259                  23                   7          Completion -> Idle            
+    Uncovered Transitions :
+    -----------------------
+Line            Trans_ID          Transition          
+----            --------          ----------          
+ 276                   3          Options -> Idle     
+ 196                  10          Bamla_Mayya -> CheckForError
+ 276                  13          Bamla_Mayya -> Idle 
+ 276                  15          Wash -> Idle        
+ 276                  17          Rinse -> Idle       
+ 276                  20          Drain -> Idle       
+
+
+    Summary                       Bins      Hits    Misses  Coverage
+    -------                       ----      ----    ------  --------
+        FSM States                  11        11         0   100.00%
+        FSM Transitions             24        18         6    75.00%
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                      78        72         6    92.30%
+
+================================Statement Details================================
+
+Statement Coverage for instance /WashingMachine_tb/dut --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File Desgin_code.v
+    1                                                module WashingMachine (
+    2                                                    input clk, powerButton, configu, run,
+    3                                                    input [2:0] mode,
+    4                                                    input [31:0] manualTimer,
+    5                                                    input door_error, water_error,
+    6                                                    output reg [3:0] cs
+    7                                                    // output CycleComplete
+    8                                                );
+    9                                                    reg [3:0] ns; // Next state
+    10                                                   reg [9:0] timer,config_timer, fillTimer, lastManualTimer;// Timer for state transitions
+    11                                                   reg cycleComplete;
+    12                                                   reg internalPower;
+    13                                               
+    14                                                   // State definitions
+    15                                                   parameter Idle = 4'b0000,
+    16                                                             Options = 4'b0001,
+    17                                                             Configurations = 4'b0010,
+    18                                                             Ready = 4'b0011,
+    19                                                             Wash = 4'b0100,
+    20                                                             Rinse = 4'b0101,
+    21                                                             Drain = 4'b0110,
+    22                                                             Dry = 4'b0111,
+    23                                                             Completion = 4'b1000,
+    24                                                             Bamla_Mayya = 4'b1001,
+    25                                                            // Pause = 4'b1010,
+    26                                                             CheckForError = 4'b1111,
+    27                                                             WashCycle = 4'd90;
+    28                                                             
+    29                                                   // Mode definitions
+    30                                                   parameter QuickWash = 3'b000,
+    31                                                             Sports = 3'b001,
+    32                                                             GentleCare = 3'b010,
+    33                                                             Denim = 3'b011,
+    34                                                             Wool = 3'b100,
+    35                                                             Synthetics = 3'b101;
+    36                                               
+    37                                                   
+    38                                                   
+    39                                                   
+    40                                               
+    41                                                   initial 
+    42                                                   begin
+    43              1                          1             internalPower=0;
+    44              1                          1             cs <= Idle;
+    45              1                          1             ns <= Idle;
+    46              1                          1             timer <= 0;
+    47              1                          1             config_timer <= 0;
+    48              1                          1             lastManualTimer = 0;
+    49              1                          1             cycleComplete <= 0; 
+    50                                                   end
+    51                                               
+    52                                                   // State transition
+    53                                                   // always @(posedge clk) 
+    54                                                   // begin
+    55                                                   //     cs = ns;
+    56                                                   // end
+    57                                               
+    58              1                         44         always @(posedge powerButton or negedge powerButton)
+    59                                                   begin
+    60              1                         22             if (powerButton==0) internalPower=0;
+    61              1                         22             else internalPower <= ~ internalPower; //manual turn on or off 
+    62                                                   end
+    63                                               
+    64                                                   // Next state logic
+    65              1                       4462         always @(posedge clk )
+    66                                                   begin
+    67              1                       4462             cs = ns;
+    68                                                       if (internalPower)
+    69                                                       begin
+    70                                                           case (cs)
+    71                                                               Idle: 
+    72                                                               begin
+    73              1                         22                         ns = Options;
+    74                                                               end
+    75                                               
+    76                                                               // Pause:
+    77                                                               // begin
+    78                                                               //     if (ns == CheckForError)
+    79                                                               //     begin
+    80                                                               //         if (door_error == 0 && water_error == 0)
+    81                                                               //         cs = ns;
+    82                                                               //         else
+    83                                                               //         cs = Pause;
+    84                                                               //     end
+    85                                                               //     else
+    86                                                               //     cs = ns;
+    87                                                               // end
+    88                                               
+    89                                                               Options: 
+    90                                                               begin
+    91                                                                   if (!configu) 
+    92                                                                   begin
+    93                                                                       case (mode) 
+    94              1                          4                                 QuickWash: begin timer = 120;    $display("QuickWash mode on!"); end
+    94              2                          4     
+    95              1                          1                                 Sports:    begin timer = 190;    $display("Sports mode on!"); end
+    95              2                          1     
+    96              1                          3                                 GentleCare:begin timer = 140;    $display("Gentlecare mode on!"); end
+    96              2                          3     
+    97              1                          1                                 Denim:     begin timer = 160;    $display("Denim mode on!"); end
+    97              2                          1     
+    98              1                    ***0***                                 Wool:      begin timer = 150;    $display("Wool mode on!"); end
+    98              2                    ***0***     
+    99              1                    ***0***                                 Synthetics:begin timer = 230;    $display("Synthetics mode on!"); end
+    99              2                    ***0***     
+    100             1                          1                                 default:   begin timer = 120;    $display("QuickWash mode on!"); end// set to quickwash timer as a default
+    100             2                          1     
+    101                                                                      endcase
+    102             1                         10                             ns = Ready;
+    103                                                                  end
+    104                                                                  else 
+    105                                                                  begin
+    106             1                         12                             ns = Configurations;
+    107             1                         12                             config_timer = 20;
+    108                                                                  end
+    109                                                              end
+    110                                              
+    111                                              
+    112                                                              Configurations:
+    113                                                              begin
+    114                                                                  if (config_timer == 0) 
+    115                                                                  begin
+    116             1                          2                             $display("Time limit exceeded!");
+    117             1                          2                             ns = Idle;
+    118             1                          2                             internalPower = 0;
+    119             1                          2                             lastManualTimer = 0;
+    120                                              
+    121                                                                  end
+    122                                                                  else if (manualTimer > 0 && manualTimer != lastManualTimer) 
+    123                                                                  begin 
+    124                                                                      if (manualTimer < 120) 
+    125                                                                      begin
+    126             1                          1                                 $display("Error: Manual timer must be at least 120!");
+    127             1                          1                                 lastManualTimer = manualTimer;
+    128             1                          1                                 ns = Configurations;
+    129             1                          1                                 config_timer = config_timer - 1;
+    130                                                                      end
+    131                                                                      else 
+    132                                                                      begin
+    133             1                         10                                 timer = manualTimer;
+    134             1                         10                                 lastManualTimer = 0;
+    135             1                         10                                 ns = Ready;
+    136                                                                      end
+    137                                                                  end
+    138                                                                  else 
+    139                                                                  begin
+    140             1                         39                             config_timer = config_timer - 1;
+    141             1                         39                             ns = Configurations;
+    142                                                                  end 
+    143                                                              end
+    144                                              
+    145                                              
+    146                                                              Ready:
+    147                                                              begin
+    148                                                                  if (run)
+    149                                                                      begin
+    150             1                         17                                 fillTimer = timer - 10;
+    151             1                         17                                 ns = CheckForError;
+    152                                                                      end
+    153                                                                  else
+    154             1                          6                             ns = Ready;
+    155                                                              end
+    156                                                              CheckForError: 
+    157                                                              begin
+    158                                                                  if (door_error)
+    159                                                                  begin 
+    160             1                       2032                             $display("Error: Door not closed!");
+    161             1                       2032                             ns = CheckForError;
+    162                                                                      // ns = cs;
+    163                                                                      // cs = Pause;
+    164                                                                  end
+    165                                                                  else if (water_error)
+    166                                                                  begin
+    167             1                        996                             $display("Error: Water level low!");
+    168             1                        996                             ns = CheckForError;
+    169                                                                      // ns = cs;
+    170                                                                      // cs = Pause;
+    171                                                                  end
+    172                                                                  else 
+    173             1                          8                         ns = Bamla_Mayya;
+    174                                                              end
+    175                                              
+    176                                                              Bamla_Mayya: 
+    177                                                              begin
+    178                                                                  if (!water_error)
+    179                                                                  begin
+    180                                                                      if (timer <=70)
+    181                                                                      begin
+    182             1                          8                                 ns=Rinse;
+    183                                                                      end
+    184                                                                      else if ((timer <= fillTimer) && timer > 90) 
+    185                                                                      begin
+    186             1                          8                                 ns = Wash;     
+    187                                                                      end 
+    188                                                                      else 
+    189                                                                      begin
+    190             1                        160                                 timer = timer - 1;
+    191             1                        160                                 ns = Bamla_Mayya;
+    192                                                                      end
+    193                                                                  end
+    194                                                                  else
+    195                                                                  begin
+    196             1                    ***0***                             ns=CheckForError;
+    197                                                                  end
+    198                                                              end
+    199                                              
+    200                                                              Wash: 
+    201                                                              begin
+    202                                                                  if (timer <= 90) 
+    203                                                                  begin
+    204             1                          8                             ns = Drain;     
+    205                                                                  end 
+    206                                                                  else                     
+    207                                                                  begin
+    208             1                        380                             timer = timer - 1;
+    209             1                        380                             ns = Wash;
+    210                                                                  end
+    211                                                              end
+    212                                              
+    213                                                              Drain: 
+    214                                                              begin
+    215                                                                  if (timer <= 30) 
+    216                                                                  begin                   
+    217             1                          8                             ns = Dry;
+    218                                                                  end
+    219                                                                  else if (timer <=80 && timer > 70) 
+    220                                                                  begin
+    221             1                          8                             ns = Bamla_Mayya;
+    222                                                                  end
+    223                                                                  else
+    224                                                                  begin
+    225             1                        160                             timer = timer - 1;
+    226             1                        160                             ns = Drain;
+    227                                                                  end
+    228                                                              end
+    229                                              
+    230                                                              Rinse: 
+    231                                                              begin
+    232                                                                  if (timer <= 40) 
+    233                                                                  begin
+    234             1                          8                             ns = Drain;
+    235                                                                  end 
+    236                                                                  else                     
+    237                                                                  begin
+    238             1                        240                             timer = timer - 1;
+    239             1                        240                             ns = Rinse;
+    240                                                                  end
+    241                                                              end
+    242                                              
+    243                                              
+    244                                                              Dry: 
+    245                                                              begin
+    246                                                                  if (timer <= 0)
+    247             1                          7                             ns = Completion;
+    248                                                                  else 
+    249                                                                  begin
+    250             1                        240                             timer = timer - 1;
+    251             1                        240                             ns = Dry;
+    252                                                                  end
+    253                                                              end
+    254                                                              
+    255                                                              Completion: 
+    256                                                              begin
+    257             1                          7                     $display("Cycle is completed hooray!");
+    258             1                          7                     cycleComplete = 1'b1;
+    259             1                          7                     ns = Idle;
+    260             1                          7                     internalPower = 0;
+    261                                                              end
+    262                                              
+    263             1                    ***0***                     default: ns = Idle;
+    264                                                          endcase
+    265                                                      end
+    266                                                      
+    267                                                      // else if (cs != Idle && internalPower==0) //automatic power outage or timeout
+    268                                                      // begin
+    269                                                      //     $display("Paused!");
+    270                                                      //     ns = Idle;
+    271                                                      //     // ns <= cs;
+    272                                                      //     // cs <= Pause;
+    273                                                      // end
+    274                                                      else
+    275                                                      begin
+    276             1                         65                 ns <= Idle;
+    277             1                         65                 timer <= 0;
+    278             1                         65                 config_timer <= 0;
+    279             1                         65                 cycleComplete <= 0;
+
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                        182       150        32    82.41%
+
+================================Toggle Details================================
+
+Toggle Coverage for instance /WashingMachine_tb/dut --
+
+                                              Node      1H->0L      0L->1H  "Coverage"
+                                              ---------------------------------------
+                                               clk           1           1      100.00 
+                                 config_timer[9-5]           0           0        0.00 
+                                 config_timer[4-0]           1           1      100.00 
+                                           configu           1           1      100.00 
+                                           cs[3-0]           1           1      100.00 
+                                     cycleComplete           1           1      100.00 
+                                        door_error           1           1      100.00 
+                                    fillTimer[9-8]           0           0        0.00 
+                                    fillTimer[7-0]           1           1      100.00 
+                                     internalPower           1           1      100.00 
+                              lastManualTimer[9-6]           0           0        0.00 
+                              lastManualTimer[5-4]           1           1      100.00 
+                              lastManualTimer[3-2]           0           0        0.00 
+                                lastManualTimer[1]           1           1      100.00 
+                                lastManualTimer[0]           0           0        0.00 
+                                 manualTimer[0-31]           1           1      100.00 
+                                         mode[0-2]           1           1      100.00 
+                                           ns[3-0]           1           1      100.00 
+                                       powerButton           1           1      100.00 
+                                               run           1           1      100.00 
+                                        timer[9-8]           0           0        0.00 
+                                        timer[7-0]           1           1      100.00 
+                                       water_error           1           1      100.00 
+
+Total Node Count     =         91 
+Toggled Node Count   =         75 
+Untoggled Node Count =         16 
+
+Toggle Coverage      =      82.41% (150 of 182 bins)
+
+=================================================================================
+=== Instance: /WashingMachine_tb
+=== Design Unit: work.WashingMachine_tb
+=================================================================================
+Branch Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                         6         3         3    50.00%
+
+================================Branch Details================================
+
+Branch Coverage for instance /WashingMachine_tb
+NOTE: The modification timestamp for source file 'Testbench_code.v' has been altered since compilation.
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File Testbench_code.v
+------------------------------------IF Branch------------------------------------
+    66                                        26     Count coming in to IF
+    66              1                         26                 if (pause_time > 0) begin
+                                         ***0***     All False Count
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    184                                        3     Count coming in to IF
+    184             1                          3                 // CycleComplete = test_CycleComplete; // Uncomment if included
+                                         ***0***     All False Count
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    216                                        3     Count coming in to IF
+    216             1                          3                 // CycleComplete = test_CycleComplete; // Uncomment if included
+                                         ***0***     All False Count
+Branch totals: 1 hit of 2 branches = 50.00%
+
+
+Condition Coverage:
+    Enabled Coverage              Bins   Covered    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Conditions                       3         0         3     0.00%
+
+================================Condition Details================================
+
+Condition Coverage for instance /WashingMachine_tb --
+NOTE: The modification timestamp for source file 'Testbench_code.v' has been altered since compilation.
+
+  File Testbench_code.v
+----------------Focused Condition View-------------------
+Line       66 Item    1  (pause_time > 0)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+        Input Term   Covered  Reason for no coverage   Hint
+       -----------  --------  -----------------------  --------------
+  (pause_time > 0)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:    ***0***  (pause_time > 0)_0    -                             
+  Row   2:          1  (pause_time > 0)_1    -                             
+
+----------------Focused Condition View-------------------
+Line       184 Item    1  (pause_time > 0)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+        Input Term   Covered  Reason for no coverage   Hint
+       -----------  --------  -----------------------  --------------
+  (pause_time > 0)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:    ***0***  (pause_time > 0)_0    -                             
+  Row   2:          1  (pause_time > 0)_1    -                             
+
+----------------Focused Condition View-------------------
+Line       216 Item    1  (pause_time > 0)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+        Input Term   Covered  Reason for no coverage   Hint
+       -----------  --------  -----------------------  --------------
+  (pause_time > 0)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:    ***0***  (pause_time > 0)_0    -                             
+  Row   2:          1  (pause_time > 0)_1    -                             
+
+
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                     105       105         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /WashingMachine_tb --
+NOTE: The modification timestamp for source file 'Testbench_code.v' has been altered since compilation.
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File Testbench_code.v
+    3                                                module WashingMachine_tb;
+    4                                                
+    5                                                    // Inputs
+    6                                                    reg clk, powerButton, configu, run, door_error, 
+    7                                                    water_error;
+    8                                                    reg [2:0] mode;
+    9                                                    reg [31:0] manualTimer;
+    10                                               
+    11                                                   // Outputs
+    12                                                   wire [3:0] cs;
+    13                                                   
+    14                                                   // Instantiate the WashingMachine module
+    15                                                   WashingMachine dut (
+    16                                                       .clk(clk),
+    17                                                       .powerButton(powerButton),
+    18                                                       .configu(configu),
+    19                                                       .run(run),
+    20                                                       .mode(mode),
+    21                                                       .manualTimer(manualTimer),
+    22                                                       .door_error(door_error),
+    23                                                       .cs(cs),
+    24                                                       .water_error(water_error)
+    25                                                   );
+    26                                               
+    27                                                   // Clock generation
+    28              1                      20880         always #1 clk = ~clk;
+    28              2                      20879     
+    29                                               
+    30                                                   //reset variables 
+    31                                                   task Resetvars;
+    32                                                       begin
+    33              1                         21                 powerButton=0;
+    34              1                         21                 dut.timer=0;
+    35              1                         21                 configu = 0;
+    36              1                         21                 run = 0;
+    37              1                         21                 mode = 0;
+    38              1                         21                 manualTimer = 0;
+    39              1                         21                 door_error = 0;
+    40              1                         21                 water_error = 0;
+    41              1                         21                 dut.ns = 0;
+    42              1                         21                 #20;
+    43                                                       end        
+    44                                                   endtask
+    45                                               
+    46                                                   // Task for applying test stimulus
+    47                                                   task apply_test(
+    48                                                       input reg test_power,
+    49                                                       input reg test_configu,
+    50                                                       input reg test_run,
+    51                                                       input [2:0] test_mode,
+    52                                                       input [31:0] test_manualTimer,
+    53                                                       input reg test_door_error,
+    54                                                       input reg test_water_error,
+    55                                                       input reg [31:0] pause_time // Input delay time (in ns)
+    56                                                   );
+    57                                                       begin
+    58              1                         26                 powerButton = test_power;
+    59              1                         26                 configu = test_configu;
+    60              1                         26                 run = test_run;
+    61              1                         26                 mode = test_mode;
+    62              1                         26                 manualTimer = test_manualTimer;
+    63              1                         26                 door_error = test_door_error;
+    64              1                         26                 water_error = test_water_error;
+    65                                                           // CycleComplete = test_CycleComplete; // Uncomment if included
+    66                                                           if (pause_time > 0) begin
+    67              1                         26                     #pause_time; // Wait for the specified time (in ns)
+    68                                                           end
+    69                                                       end        
+    70                                                   endtask
+    71                                               
+    72                                                   // Directed test cases
+    73                                                   task directed_tests;
+    74                                                       begin
+    75              1                          1                 $display("...............STARTING DIRECTED TESTS................");
+    76                                                            
+    77                                                           // Test 1: Basic power on, idle state
+    78              1                          1                 apply_test(1, 0, 0, 3'b000, 0,0 ,0,20); 
+    79              1                          1                 $display("-----------------------------------------Test 1 passed.");
+    80                                                           // Test 2: Power on, QuickWash mode
+    81              1                          1                 Resetvars();
+    82              1                          1                 apply_test(1, 0, 1, 3'b000, 0, 0,0,1000);
+    83              1                          1                 $display("-----------------------------------------Test 2 passed.");
+    84                                                           // Test 3: Power on, Sports mode with run disabled
+    85              1                          1                 Resetvars();
+    86              1                          1                 apply_test(1, 0, 0, 3'b001, 0, 0,0,250);
+    87              1                          1                 $display("-----------------------------------------Test 3 passed.");
+    88                                                           // Test 4: Manual timer configuration
+    89              1                          1                 Resetvars();
+    90              1                          1                 apply_test(1, 1, 1, 3'b000, 50, 0,0,50);
+    91              1                          1                 $display("-----------------------------------------Test 4 passed.");
+    92                                                           // Test 5: Door error during wash cycle
+    93              1                          1                 Resetvars();
+    94              1                          1                 apply_test(1, 0, 1, 3'b010, 0, 1,0,100);
+    95              1                          1                 $display("-----------------------------------------Test 5 passed.");
+    96                                                           // Test 6: Invalid mode (edge case)
+    97                                                           // apply_test(1, 0, 1, 3'b111, 0, 0,0);
+    98                                               
+    99                                                           // Test 7: Zero timer in manual configuration
+    100             1                          1                 Resetvars();
+    101             1                          1                 apply_test(1, 1, 1, 3'b000, 0, 0,0,350);
+    102             1                          1                 $display("-----------------------------------------Test 6 passed.");
+    103                                                      end
+    104                                                  endtask
+    105                                              
+    106                                                  // Random test cases
+    107                                                  task random_tests;
+    108                                                      integer i;
+    109                                                      begin
+    110             1                          1                 $display("Starting Random Tests...");
+    111             1                          1                 for (i = 0; i < 10; i = i + 1) begin
+    111             2                         10     
+    112             1                         10                     Resetvars();
+    113                                                              apply_test(
+    114                                                                  $random % 2,           // power
+    115                                                                  $random % 2,           // configu
+    116                                                                  $random % 2,           // run
+    117                                                                  $urandom_range(0,7),   // mode (includes invalid modes)
+    118                                                                  $random % 500,         // manualTimer (wide range)
+    119                                                                  $random % 2,           // door_error
+    120                                                                  $random % 2 ,
+    121                                                                  1000           // water_error
+    122                                                              );
+    123                                                          end
+    124                                                      end
+    125                                                  endtask
+    126                                              
+    127                                                  // Constrained random test cases
+    128                                                 task constrained_random_tests;
+    129                                                  integer i;
+    130                                                  integer seed;
+    131                                                  begin
+    132             1                          1                
+    133             1                          1             $display("Starting Constrained Random Tests...");
+    133             2                         10     
+    134                                                      for (i = 0; i < 10; i = i + 1) begin
+    135             1                         10                 // Reseed random number generator for more varied results
+    136             1                         10                 seed = $time;
+    137             1                         10                 $display(seed);  
+    138             1                         10                 Resetvars(); // clear
+    139             1                         10                 $display("NEW TESTCASE %0d..............", i + 1);
+    140                                                          apply_test(
+    141                                                              1,                   // Always power on
+    142                                                              $urandom % 2,                           // configu
+    143                                                              1,                                      // Always running
+    144                                                              $urandom_range(0, 6),                   // Valid modes only
+    145                                                              100 + ($urandom % 200),                 // Timer between 100 and 300
+    146                                                              $urandom % 2,                           // door_error
+    147                                                              $urandom % 2,                           // water_error
+    148                                                              500                                     // pause time
+    149                                                          );
+    150                                              
+    151                                                         
+    152                                                      end
+    153                                                  end
+    154                                              endtask
+    155                                              
+    156                                                 
+    157                                              
+    158                                                    // Task to simulate door_error trigger and resolve
+    159                                              
+    160                                                  task door_error_trigger( input reg test_power,
+    161                                                      input reg test_configu,
+    162                                                      input reg test_run,
+    163                                                      input [2:0] test_mode,
+    164                                                      input [31:0] test_manualTimer,
+    165                                                      input reg test_door_error,
+    166                                                      input reg test_water_error,
+    167                                                      input reg [31:0] pause_time );
+    168             1                          3             begin
+    169             1                          3                 powerButton = test_power;
+    170             1                          3                 configu = test_configu;
+    171             1                          3                 run = test_run;
+    172             1                          3                 mode = test_mode;
+    173             1                          3                 manualTimer = test_manualTimer;
+    174             1                          3                 $display("Starting Door Error Trigger Task...");
+    175                                                          $display("Door error triggered at time %t.", $time);
+    176             1                          3     
+    177             1                          3                 door_error = test_door_error;
+    178             1                          3                 #15;
+    179             1                          3                 door_error = ~test_door_error;
+    180             1                          3                 $display("Door error resolved at time %t.", $time);
+    181             1                          3                 water_error = test_water_error;
+    182             1                          3                 #100;
+    183                                                          $display("Door Error Trigger Task completed at time %t.", $time);
+    184                                                          // CycleComplete = test_CycleComplete; // Uncomment if included
+    185             1                          3                 if (pause_time > 0) begin
+    186                                                              #pause_time; // Wait for the specified time (in ns)
+    187                                                          end
+    188                                                      end
+    189                                                  endtask
+    190                                              
+    191                                                  task water_error_trigger( input reg test_power,
+    192                                                      input reg test_configu,
+    193                                                      input reg test_run,
+    194                                                      input [2:0] test_mode,
+    195                                                      input [31:0] test_manualTimer,
+    196                                                      input reg test_door_error,
+    197                                                      input reg test_water_error,
+    198                                                      input reg [31:0] pause_time );
+    199             1                          3             begin
+    200             1                          3                 powerButton = test_power;
+    201             1                          3                 configu = test_configu;
+    202             1                          3                 run = test_run;
+    203             1                          3                 mode = test_mode;
+    204             1                          3                 manualTimer = test_manualTimer;
+    205             1                          3                 $display("Starting water Error Trigger Task...");
+    206                                                          $display("water error triggered at time %t.", $time);
+    207                                              
+    208             1                          3                
+    209             1                          3                 water_error = test_water_error;
+    210             1                          3                 #15;
+    211             1                          3                 water_error = ~test_water_error;
+    212             1                          3                 $display("Door error resolved at time %t.", $time);
+    213             1                          3                 door_error = test_door_error;
+    214             1                          3                 #100;
+    215                                                          $display("Door Error Trigger Task completed at time %t.", $time);
+    216                                                          // CycleComplete = test_CycleComplete; // Uncomment if included
+    217             1                          3                 if (pause_time > 0) begin
+    218                                                              #pause_time; // Wait for the specified time (in ns)
+    219                                                          end
+    220                                                      end
+    221                                                  endtask
+    222                                                  
+    223                                              
+    224                                                  
+    225                                              
+    226                                              
+    227                                                  // Monitor signal values
+    228             1                          1         initial begin
+    229                                                      $monitor("Timer: %d | powerButton: %b | internalPower: %b | configu: %b | run: %b | mode: %b | manualTimer: %d | door_error: %b | water_error: %b | cs: %b | ns: %b |cycleComplete: %b |", 
+    230                                                                dut.timer, powerButton,dut.internalPower, configu, run, mode, manualTimer, door_error,water_error, cs,dut.ns, dut.cycleComplete);
+    231                                                  end
+    232                                              
+    233                                                  // Main testbench execution
+    234             1                          1         initial begin
+    235                                                      clk = 0;
+    236                                                     
+    237             1                          1             // Run all test categories
+    238             1                          1             directed_tests();
+    239             1                          1             random_tests();
+    240                                                      constrained_random_tests();
+    241                                                     
+    242             1                          1     
+    243             1                          1             $display("-----------------------TESTCASE  1--------------------------------");
+    244             1                          1             Resetvars();
+    245             1                          1             door_error_trigger(1, 0, 1, 3'b000, 0,1 ,0,500); 
+    246             1                          1             $display("-----------------------TESTCASE  2--------------------------------");
+    247             1                          1             Resetvars();
+    248             1                          1             door_error_trigger(1, 1, 1, 3'b001, 140,1 ,0,500);
+    249             1                          1             $display("-----------------------TESTCASE  3--------------------------------");
+    250             1                          1             Resetvars();
+    251             1                          1             door_error_trigger(0, 0, 1, 3'b000, 0,1 ,0,500);
+    252             1                          1             $display("-----------------------TESTCASE  4--------------------------------");
+    253             1                          1             Resetvars();
+    254             1                          1             water_error_trigger(1, 0, 1, 3'b000, 0,0 ,1,500); 
+    255             1                          1             $display("-----------------------TESTCASE  5--------------------------------");
+    256             1                          1             Resetvars();
+    257             1                          1             water_error_trigger(1, 1, 1, 3'b011, 160,0 ,1,500);
+    258             1                          1             $display("-----------------------TESTCASE  6--------------------------------");
+    259             1                          1             Resetvars();
+    260                                                      water_error_trigger(0, 0, 1, 3'b101, 0,0 ,1,500);
+    261             1                          1     
+    262             1                          1             $display("All tests completed.");
+
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                         90        90         0   100.00%
+
+================================Toggle Details================================
+
+Toggle Coverage for instance /WashingMachine_tb --
+
+                                              Node      1H->0L      0L->1H  "Coverage"
+                                              ---------------------------------------
+                                               clk           1           1      100.00 
+                                           configu           1           1      100.00 
+                                           cs[0-3]           1           1      100.00 
+                                        door_error           1           1      100.00 
+                                 manualTimer[0-31]           1           1      100.00 
+                                         mode[0-2]           1           1      100.00 
+                                       powerButton           1           1      100.00 
+                                               run           1           1      100.00 
+                                       water_error           1           1      100.00 
+
+Total Node Count     =         45 
+Toggled Node Count   =         45 
+Untoggled Node Count =          0 
+
+Toggle Coverage      =     100.00% (90 of 90 bins)
+
+
+ASSERTION RESULTS:
+--------------------------------------------------------------------
+Name                 File(Line)                   Failure      Pass 
+                                                  Count        Count
+--------------------------------------------------------------------
+/WashingMachine_tb/dut/assert__CheckForError_Handle_Water_Error
+                     Desgin_code.v(362)                 0          1
+/WashingMachine_tb/dut/assert__CheckForError_Handle_Door_Error
+                     Desgin_code.v(358)                 0          1
+/WashingMachine_tb/dut/assert__Completion_CycleComplete
+                     Desgin_code.v(353)                 0          1
+/WashingMachine_tb/dut/assert__Drain_to_Dry
+                     Desgin_code.v(348)                 0          1
+/WashingMachine_tb/dut/assert__Wash_to_Drain
+                     Desgin_code.v(343)                 0          1
+/WashingMachine_tb/dut/assert__Idle_Timer_Reset
+                     Desgin_code.v(337)                 0          1
+/WashingMachine_tb/dut/assert__Power_Off_Reset
+                     Desgin_code.v(332)                 0          1
+/WashingMachine_tb/dut/assert__Ready_Stay_Without_Run
+                     Desgin_code.v(327)                 0          1
+/WashingMachine_tb/dut/assert__Ready_to_CheckForError
+                     Desgin_code.v(324)                 0          1
+/WashingMachine_tb/dut/assert__Config_Valid_Timer
+                     Desgin_code.v(321)                 0          1
+/WashingMachine_tb/dut/assert__Configurations_to_Configurations
+                     Desgin_code.v(318)                 0          1
+/WashingMachine_tb/dut/assert__Synthetics_time
+                     Desgin_code.v(315)                 0          1
+/WashingMachine_tb/dut/assert__Options_to_Ready
+                     Desgin_code.v(312)                 0          1
+/WashingMachine_tb/dut/assert__Idle_to_Idle
+                     Desgin_code.v(309)                 0          1
+/WashingMachine_tb/dut/assert__Options_to_Configurations
+                     Desgin_code.v(306)                 0          1
+/WashingMachine_tb/dut/assert__Idle_to_options
+                     Desgin_code.v(303)                 0          1
+/WashingMachine_tb/dut/assert__Sequential_State_Progression
+                     Desgin_code.v(300)                 0          1
+/WashingMachine_tb/dut/assert__Washing_Without_Water_Error
+                     Desgin_code.v(296)                 0          1
+/WashingMachine_tb/dut/assert__Manual_Timer_Validation
+                     Desgin_code.v(291)                 0          1
+/WashingMachine_tb/dut/assert__Configurations_Timeout_Handling
+                     Desgin_code.v(287)                 0          1
+/WashingMachine_tb/dut/assert__POWER_NOT_IDLE
+                     Desgin_code.v(284)                 0          1
+
+Total Coverage By Instance (filtered view): 89.78%
+
+End time: 23:16:20 on Nov 22,2024, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
